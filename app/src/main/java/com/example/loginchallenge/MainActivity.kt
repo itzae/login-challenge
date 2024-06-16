@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.example.loginchallenge.ui.login.LoginScreen
 import com.example.loginchallenge.ui.theme.LoginChallengeTheme
 
 class MainActivity : ComponentActivity() {
@@ -11,8 +12,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LoginChallengeTheme {
-
+            LoginChallengeTheme(dynamicColor = false) {
+                LoginScreen()
             }
         }
     }
