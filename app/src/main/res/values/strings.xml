@@ -7,7 +7,8 @@
     <string name="login_successful_dialog_button">Continuar</string>
     <string name="login_error_dialog_button">Intentar de nuevo</string>
     <string name="invalid_email_helper_text">El correo no es valido</string>
-
+    <string name="empty_state_title">Sin movimientos</string>
+    <string name="empty_state_description">Parece que no haz realizado ninguna operación</string>
     <!--content description-->
     <string name="header_image_description">Imagen principal del Login</string>
     <string name="toggle_show_password_description">Mostrar contraseña</string>

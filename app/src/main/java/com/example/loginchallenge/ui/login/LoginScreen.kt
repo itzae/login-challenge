@@ -38,7 +38,8 @@ import com.example.loginchallenge.ui.theme.Typography
 fun LoginScreen(
     modifier: Modifier = Modifier,
     loginState: LoginState = LoginState.Idle,
-    onLogin: (email: String, password: String) -> Unit = { _, _ -> }
+    onLogin: (email: String, password: String) -> Unit = { _, _ -> },
+    onNavigate: () -> Unit = {}
 ) {
     var isOpenDialog by remember {
         mutableStateOf(false)
@@ -50,7 +51,7 @@ fun LoginScreen(
                     title = loginState.title,
                     description = loginState.message,
                     confirmButtonLabel = stringResource(id = R.string.login_successful_dialog_button),
-                    onConfirm = { isOpenDialog = false }
+                    onConfirm = { onNavigate() }
                 )
 
         is LoginState.BadCredentialsLogin -> {

@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 data class Dimens(
     val Space4: Dp = 4.dp,
     val Space8: Dp = 8.dp,
+    val Space16: Dp = 16.dp,
     val Space18: Dp = 18.dp,
     val Space32: Dp = 32.dp,
     val Space34: Dp = 34.dp,
