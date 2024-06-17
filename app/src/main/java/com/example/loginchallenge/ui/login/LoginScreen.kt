@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -132,6 +133,7 @@ fun LoginBody(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = LoginTheme.dimens.Space8)
+                    .testTag("email_text_field")
             )
             LoginTextField(
                 text = password,
@@ -142,6 +144,7 @@ fun LoginBody(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = LoginTheme.dimens.Space8)
+                    .testTag("password_text_field")
             )
             Button(
                 onClick = { onLogin(email, password) },

@@ -72,6 +72,7 @@ dependencies {
     testImplementation (libs.androidx.arch.core)
     testImplementation (libs.kotlinx.coroutines.test)
     testImplementation (libs.cash.turbine)
+    // Dependencias para pruebas instrumentadas de Jetpack Compose
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
