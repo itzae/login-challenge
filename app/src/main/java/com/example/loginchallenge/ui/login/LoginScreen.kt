@@ -24,16 +24,44 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.loginchallenge.R
+import com.example.loginchallenge.ui.component.LoginDialog
 import com.example.loginchallenge.ui.component.LoginTextField
+import com.example.loginchallenge.ui.login.state.LoginState
 import com.example.loginchallenge.ui.theme.LoginChallengeTheme
 import com.example.loginchallenge.ui.theme.LoginTheme
 import com.example.loginchallenge.ui.theme.Typography
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
+fun LoginScreen(
+    modifier: Modifier = Modifier,
+    loginState: LoginState = LoginState.Idle,
+    onLogin: (email: String, password: String) -> Unit = { _, _ -> }
+) {
+    var isOpenDialog by remember {
+        mutableStateOf(true)
+    }
+    when (loginState) {
+        is LoginState.SuccessfulLogin ->
+            LoginDialog(
+                title = loginState.title,
+                description = loginState.message,
+                confirmButtonLabel = stringResource(id = R.string.login_successful_dialog_button)
+            )
+
+        is LoginState.BadCredentialsLogin -> {
+            if (isOpenDialog)
+                LoginDialog(
+                    title = loginState.title,
+                    description = loginState.message,
+                    confirmButtonLabel = stringResource(id = R.string.login_error_dialog_button),
+                    onConfirm = { isOpenDialog = false }
+                )
+        }
+
+        else -> Unit
+    }
 
     Column(
         modifier = modifier
@@ -46,7 +74,13 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .weight(1f)
         )
-        LoginBody(modifier = Modifier.weight(1f), onLogin = { _, _ -> })
+        LoginBody(
+            modifier = Modifier.weight(1f),
+            isEmailError = loginState is LoginState.IncorrectEmail,
+            onLogin = { email, password ->
+                onLogin(email, password)
+                isOpenDialog = true
+            })
     }
 }
 
@@ -59,13 +93,17 @@ fun LoginHeader(modifier: Modifier = Modifier) {
     ) {
         Image(
             painter = painterResource(id = R.drawable.login_image),
-            contentDescription = stringResource(id = R.string.header_image_content_description),
+            contentDescription = stringResource(id = R.string.header_image_description),
         )
     }
 }
 
 @Composable
-fun LoginBody(modifier: Modifier = Modifier, onLogin: (email: String, password: String) -> Unit) {
+fun LoginBody(
+    modifier: Modifier = Modifier,
+    isEmailError: Boolean,
+    onLogin: (email: String, password: String) -> Unit
+) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     Box(modifier = modifier) {
@@ -89,6 +127,8 @@ fun LoginBody(modifier: Modifier = Modifier, onLogin: (email: String, password: 
                 onTextChange = { email = it },
                 keyboardType = KeyboardType.Email,
                 imeAction = ImeAction.Next,
+                isError = isEmailError,
+                helperText = if (isEmailError) stringResource(id = R.string.invalid_email_helper_text) else "",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = LoginTheme.dimens.Space8)
@@ -96,7 +136,6 @@ fun LoginBody(modifier: Modifier = Modifier, onLogin: (email: String, password: 
             LoginTextField(
                 text = password,
                 placeholder = stringResource(id = R.string.password_input_placeholder),
-                visualTransformation = PasswordVisualTransformation(),
                 keyboardType = KeyboardType.Password,
                 imeAction = ImeAction.Done,
                 onTextChange = { password = it },
@@ -107,6 +146,7 @@ fun LoginBody(modifier: Modifier = Modifier, onLogin: (email: String, password: 
             Button(
                 onClick = { onLogin(email, password) },
                 shape = RoundedCornerShape(20),
+                enabled = email.isNotEmpty() && password.isNotEmpty(),
                 modifier = Modifier
                     .imePadding()
                     .fillMaxWidth()

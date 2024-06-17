@@ -4,7 +4,12 @@
     <string name="email_input_placeholder">Email</string>
     <string name="password_input_placeholder">Contraseña</string>
     <string name="login_button">Ingresar</string>
+    <string name="login_successful_dialog_button">Continuar</string>
+    <string name="login_error_dialog_button">Intentar de nuevo</string>
+    <string name="invalid_email_helper_text">El correo no es valido</string>
 
     <!--content description-->
-    <string name="header_image_content_description">Imagen principal del Login</string>
+    <string name="header_image_description">Imagen principal del Login</string>
+    <string name="toggle_show_password_description">Mostrar contraseña</string>
+    <string name="toggle_hide_password_description">Ocultar contraseña</string>
 </resources>
