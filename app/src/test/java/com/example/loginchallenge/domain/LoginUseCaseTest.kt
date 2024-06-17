@@ -15,7 +15,7 @@ class LoginUseCaseTest {
 
     @Test
     fun `Login with correct credentials return true`() {
-        val email = "itzaeg@gmail.com"
+        val email = "test@gmail.com"
         val password = "PasswordTest123"
 
         assertThat(loginUseCase(email, password)).isTrue()

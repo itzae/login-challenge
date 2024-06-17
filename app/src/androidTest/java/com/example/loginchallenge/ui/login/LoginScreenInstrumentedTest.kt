@@ -35,7 +35,7 @@ class LoginScreenInstrumentedTest {
                 loginState = loginState,
                 onLogin = { email, password -> viewModel.loginAttempt(email, password) })
         }
-        composeTestRule.onNodeWithText("Email").performTextInput("itzaeg@gmail.com")
+        composeTestRule.onNodeWithText("Email").performTextInput("test@gmail.com")
         composeTestRule.onNodeWithText("Contraseña").performTextInput("PasswordTest123")
         composeTestRule.onNodeWithText("Ingresar").performClick()
 
@@ -50,7 +50,7 @@ class LoginScreenInstrumentedTest {
                 loginState = loginState,
                 onLogin = { email, password -> viewModel.loginAttempt(email, password) })
         }
-        composeTestRule.onNodeWithText("Email").performTextInput("itzaeg@gmail.com")
+        composeTestRule.onNodeWithText("Email").performTextInput("test@gmail.com")
         composeTestRule.onNodeWithText("Contraseña").performTextInput("Password")
         composeTestRule.onNodeWithText("Ingresar").performClick()
 

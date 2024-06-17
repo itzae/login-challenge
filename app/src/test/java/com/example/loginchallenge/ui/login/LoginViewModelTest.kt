@@ -19,7 +19,7 @@ class LoginViewModelTest {
 
     @Test
     fun `Login attempt with valid credentials`() = runTest {
-        loginViewModel.loginAttempt("itzaeg@gmail.com", "PasswordTest123")
+        loginViewModel.loginAttempt("test@gmail.com", "PasswordTest123")
         loginViewModel.loginState.test {
             assertThat(awaitItem()).isEqualTo(
                 LoginState.SuccessfulLogin(
@@ -32,7 +32,7 @@ class LoginViewModelTest {
 
     @Test
     fun `Login attempt with invalid credentials`() = runTest {
-        loginViewModel.loginAttempt("itzaeg@gmail.com", "PasswordTest")
+        loginViewModel.loginAttempt("test@gmail.com", "PasswordTest")
         loginViewModel.loginState.test {
             assertThat(awaitItem()).isEqualTo(
                 LoginState.BadCredentialsLogin(
@@ -44,7 +44,7 @@ class LoginViewModelTest {
 
     @Test
     fun `Login attempt with invalid email format`() = runTest {
-        loginViewModel.loginAttempt("itzaeg@.com", "PasswordTest")
+        loginViewModel.loginAttempt("test@.com", "PasswordTest")
         loginViewModel.loginState.test {
             assertThat(awaitItem()).isEqualTo(LoginState.IncorrectEmail)
         }

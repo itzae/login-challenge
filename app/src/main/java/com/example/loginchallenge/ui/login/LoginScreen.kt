@@ -41,15 +41,17 @@ fun LoginScreen(
     onLogin: (email: String, password: String) -> Unit = { _, _ -> }
 ) {
     var isOpenDialog by remember {
-        mutableStateOf(true)
+        mutableStateOf(false)
     }
     when (loginState) {
         is LoginState.SuccessfulLogin ->
-            LoginDialog(
-                title = loginState.title,
-                description = loginState.message,
-                confirmButtonLabel = stringResource(id = R.string.login_successful_dialog_button)
-            )
+            if (isOpenDialog)
+                LoginDialog(
+                    title = loginState.title,
+                    description = loginState.message,
+                    confirmButtonLabel = stringResource(id = R.string.login_successful_dialog_button),
+                    onConfirm = { isOpenDialog = false }
+                )
 
         is LoginState.BadCredentialsLogin -> {
             if (isOpenDialog)
