@@ -28,7 +28,7 @@ fun LoginNavHost(
             })
         }
         composable(route = LoginScreens.HomeScreen.route) {
-            HomeScreen()
+            HomeScreen { navHostController.navigateUp() }
         }
     }
 }

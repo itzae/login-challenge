@@ -9,8 +9,14 @@
     <string name="invalid_email_helper_text">El correo no es valido</string>
     <string name="empty_state_title">Sin movimientos</string>
     <string name="empty_state_description">Parece que no haz realizado ninguna operación</string>
+    <string name="balance_label">Saldo disponible</string>
+    <string name="promotion_section_title">Promociones</string>
+    <string name="last_transactions_section_title">Últimos movimientos</string>
+    <string name="section_action_label">Ver todo</string>
     <!--content description-->
     <string name="header_image_description">Imagen principal del Login</string>
     <string name="toggle_show_password_description">Mostrar contraseña</string>
     <string name="toggle_hide_password_description">Ocultar contraseña</string>
+    <string name="profile_image_description">Imagen de perfil</string>
+    <string name="back_button_description">Regresar a la pantalla de login</string>
 </resources>
