@@ -8,11 +8,12 @@ Esta aplicación de Android implementa un fake login utilizando Kotlin. Este pro
 - Pruebas unitarias para el ViewModel.
 - Pruebas unitarias para el usecase
 - Pruebas instrumentadas
+- Soporta darkmode
 
 ## Capturas de Pantalla
 
+https://github.com/itzae/login-challenge/assets/27383308/ac9db1fc-ff58-487e-b64b-0dd9563f8d31
 
-https://github.com/itzae/login-challenge/assets/27383308/1c33fb43-8c30-43e8-aba3-05eef2953608
 
 
 ## Tecnologías Utilizadas
